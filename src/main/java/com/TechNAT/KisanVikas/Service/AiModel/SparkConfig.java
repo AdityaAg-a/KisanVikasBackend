@@ -1,6 +1,6 @@
 package com.TechNAT.KisanVikas.Service.AiModel;
 
 
-public class CropPredictionService {
-	
+public class SparkConfig {
+
 }
