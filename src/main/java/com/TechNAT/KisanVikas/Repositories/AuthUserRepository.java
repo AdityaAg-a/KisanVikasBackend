@@ -9,5 +9,5 @@ import com.TechNAT.KisanVikas.DAO.AuthUser;
 public interface AuthUserRepository extends MongoRepository<AuthUser, String>{
 	public long countBymobileno(String mobno);
 	public void deleteAllBymobileno(String mobno);
-	
+	public String findBymobileno(String mobno);
 }

@@ -18,7 +18,7 @@ import com.TechNAT.KisanVikas.DAO.AuthUser;
 import com.TechNAT.KisanVikas.DAO.FarmerUser;
 import com.TechNAT.KisanVikas.Repositories.FarmerRepository;
 import com.TechNAT.KisanVikas.Repositories.FarmerRepositoryCustom;
-
+import com.TechNAT.KisanVikas.Service.AuthenticateLogin;
 import com.TechNAT.KisanVikas.Service.SendEmailOTP;
 
 
@@ -100,6 +100,9 @@ public class FarmerController {
 		return msg;
 	}
 	
+	@Autowired 
+	private AuthenticateLogin authenticatelogin;
+	
 	@PostMapping(path="/authOTP")
 	public String AuthOTP(@RequestBody AuthUser authUser ) {
 		String msg="";
@@ -107,7 +110,8 @@ public class FarmerController {
 		String otp=authUser.getOtp();
 		if(mobileno.length()==10 && !mobileno.startsWith("0")) {
 			if(otp.length()==6) {
-				
+				String data=this.authenticatelogin.AuthenciateUser(authUser);
+				System.out.println(data);
 				msg="User is Registred";
 			}
 		}
