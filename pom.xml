@@ -40,6 +40,28 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+		<dependency>
+		    <groupId>ai.djl.spring</groupId>
+		    <artifactId>djl-spring-boot-starter-mxnet-auto</artifactId>
+		    <version>0.26</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>ai.djl.spring</groupId>
+		    <artifactId>djl-spring-boot-starter-autoconfigure</artifactId>
+		    <version>0.26</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>ai.djl</groupId>
+		    <artifactId>model-zoo</artifactId>
+		    <version>0.26.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>nz.ac.waikato.cms.weka</groupId>
+		    <artifactId>weka-dev</artifactId>
+		    <version>3.9.5</version>
+		</dependency>
 	</dependencies>
 
 	<build>
