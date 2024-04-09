@@ -105,14 +105,16 @@ public class FarmerController {
 	
 	@PostMapping(path="/authOTP")
 	public String AuthOTP(@RequestBody AuthUser authUser ) {
-		String msg="";
+		String msg="Sucess";
 		String mobileno=authUser.getMobileno();
 		String otp=authUser.getOtp();
 		if(mobileno.length()==10 && !mobileno.startsWith("0")) {
 			if(otp.length()==6) {
 				String data=this.authenticatelogin.AuthenciateUser(authUser);
 				System.out.println(data);
-				msg="User is Registred";
+				msg="Success";
+				String data1=this.authenticatelogin.CheckUserExsist(authUser);
+				System.out.println(data);
 			}
 		}
 		return msg;
