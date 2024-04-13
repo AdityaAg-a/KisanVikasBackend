@@ -43,10 +43,10 @@ public class InfoController {
 	@PostMapping("setCropDetails")
 	public String setCropDetails(@RequestBody CropDetails cropdetails) {
 		String msg="";
-		/*formate of Request body 
-		 * { "cropid":"2", "cropname":"Tomato", "cropimgurl":"https://i.imgur.com/qcJBZQD.png"} */
+		
 		try {
 			this.croprepository.save(cropdetails);
+			System.out.println(cropdetails.toString());
 			msg="Sccessfully added New Crop";
 		}
 		catch(Exception e) {
