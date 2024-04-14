@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.TechNAT.KisanVikas.DAO.CropDetails;
 import com.TechNAT.KisanVikas.DAO.CropDiseases;
 import com.TechNAT.KisanVikas.DAO.SoilType;
+import com.TechNAT.KisanVikas.Repositories.CropDiseasesRepository;
 import com.TechNAT.KisanVikas.Repositories.CropRepository;
 import com.TechNAT.KisanVikas.Repositories.SoilTypeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -28,6 +29,9 @@ public class InfoController {
 	
 	@Autowired
 	private CropRepository croprepository;
+	
+	@Autowired
+	private CropDiseasesRepository cropdiseasesrepo;
 	
 	@GetMapping("getSoilName")
 	public String getSoilName(@RequestParam String soilId) {
@@ -69,15 +73,15 @@ public class InfoController {
 	
 	@GetMapping("GetAllDisease")
 	public String getAllDisease() {
-		String msg="";
+		List<CropDiseases> cropdiseaseslist=this.cropdiseasesrepo.findAll();
+		ObjectMapper objectMapper = new ObjectMapper();
 		try {
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			msg="Excpetion Occured while getting Crop Diseases Details";
-		}
-		return msg;
+	        return objectMapper.writeValueAsString(cropdiseaseslist);
+	    } catch (JsonProcessingException e) {
+	        e.printStackTrace();
+	        return "Error occurred while processing JSON";
+	    }
+		
 	}
 	
 	
