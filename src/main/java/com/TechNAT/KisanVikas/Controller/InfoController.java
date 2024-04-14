@@ -16,6 +16,8 @@ import com.TechNAT.KisanVikas.DAO.CropDiseases;
 import com.TechNAT.KisanVikas.DAO.SoilType;
 import com.TechNAT.KisanVikas.Repositories.CropRepository;
 import com.TechNAT.KisanVikas.Repositories.SoilTypeRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @RequestMapping("/Info")
@@ -37,8 +39,14 @@ public class InfoController {
 	
 	@GetMapping("getAllCrops")
 	public String getAllCrops() {
-		List<CropDetails> cropdetails=this.croprepository.findAll();
-		return cropdetails.toString();
+		List<CropDetails> cropdetailslist=this.croprepository.findAll();
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+            return objectMapper.writeValueAsString(cropdetailslist);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return "Error occurred while processing JSON";
+        }
 	}
 	
 	@PostMapping("setCropDetails")

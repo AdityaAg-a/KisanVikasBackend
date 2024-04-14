@@ -10,7 +10,7 @@ public class CropDetails {
 	private String cropType="";
 	private String defaultColor="";
 	private String imageUrl="";
-	private String stageofFamring="";
+	private String stageofFarming="";
 	private Boolean selected=false;
 	public String getCropid() {
 		return cropid;
@@ -43,10 +43,10 @@ public class CropDetails {
 		this.imageUrl = imageUrl;
 	}
 	public String getStageofFamring() {
-		return stageofFamring;
+		return stageofFarming;
 	}
-	public void setStageofFamring(String stageofFamring) {
-		this.stageofFamring = stageofFamring;
+	public void setStageofFamring(String stageofFarming) {
+		this.stageofFarming = stageofFarming;
 	}
 	public Boolean getSelected() {
 		return selected;
@@ -57,8 +57,8 @@ public class CropDetails {
 	@Override
 	public String toString() {
 		return "{\"cropid\":\"" + cropid + "\", cropName\":\"" + cropName + "\", cropType\":\"" + cropType
-				+ "\", defaultColor\":\"" + defaultColor + "\", imageUrl\":\"" + imageUrl + "\", stageofFamring\":\""
-				+ stageofFamring + "\", selected\":\"" + selected + "}";
+				+ "\", defaultColor\":\"" + defaultColor + "\", imageUrl\":\"" + imageUrl + "\", stageofFarming\":\""
+				+ stageofFarming + "\", selected\":\"" + selected + "}";
 	}
 	
 	
