@@ -61,8 +61,11 @@ public class LoadData {
     }
 
     public Classifier getModel(String name) throws Exception{
+    	System.out.println("getting file");
         ObjectInputStream oos = new ObjectInputStream(new FileInputStream("src/main/resources/models/" + name));
         Classifier cls = (Classifier)oos.readObject();
+        System.out.println("fetched file");
+        System.out.println(oos);
         oos.close();
         return cls;
 
