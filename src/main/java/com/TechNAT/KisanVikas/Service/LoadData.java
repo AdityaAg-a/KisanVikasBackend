@@ -14,8 +14,11 @@ import java.io.*;
 public class LoadData {
 
     public Instances getDataFromCsvFile(String fileName) throws Exception {
+    	System.out.println("getting file");
         CSVLoader loader = new CSVLoader();
-        loader.setSource(new File("src/main/resources/csv/" + fileName));
+        loader.setSource(new File("https://kisanvikasbackend.onrender.com/files/aimodel/" + fileName));
+        System.out.println("fetched file");
+        System.out.println(loader.toString());
         return loader.getDataSet();
     }
 
