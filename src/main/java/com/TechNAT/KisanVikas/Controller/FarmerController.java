@@ -45,41 +45,41 @@ public class FarmerController {
 		return mp.toString();
 	}
 	
-	@PostMapping(path = "/SignUp")
-	public String userRegister(@RequestBody FarmerUser farmeruser) {
-		String msg="";
-		try {
-			long userexist=this.farmerRepository.countByusrmobileno(farmeruser.getUsrmobileno());
-			if(userexist==0) {
-				this.farmerRepository.save(farmeruser);
-				return msg;
-			}
-			msg="User Already Exist";
-			return msg;
-		}
-		catch(Exception ex) {
-			ex.printStackTrace();
-	        return msg;
-	
-		}
-	}
-	@PostMapping(path = "/Farmerinfo")
-	public String saveFarmerInfo(@RequestBody FarmerUser farmeruser) {
-		String msg="";
-		try {
-	
-			farmerRepositoryCustom.updateFieldsByMobileNumber(farmeruser.getUsrmobileno(),farmeruser);
-			System.out.println("Used data Updated");
-			msg="User Data Saved";
-			return msg;
-		}
-		catch(Exception ex) {
-			ex.printStackTrace();
-			msg="Expception While saving data";
-	        return msg;
-	
-		}
-	}
+//	@PostMapping(path = "/SignUp")
+//	public String userRegister(@RequestBody FarmerUser farmeruser) {
+//		String msg="";
+//		try {
+//			long userexist=this.farmerRepository.countByusrmobileno(farmeruser.getUsrmobileno());
+//			if(userexist==0) {
+//				this.farmerRepository.save(farmeruser);
+//				return msg;
+//			}
+//			msg="User Already Exist";
+//			return msg;
+//		}
+//		catch(Exception ex) {
+//			ex.printStackTrace();
+//	        return msg;
+//	
+//		}
+//	}
+//	@PostMapping(path = "/Farmerinfo")
+//	public String saveFarmerInfo(@RequestBody FarmerUser farmeruser) {
+//		String msg="";
+//		try {
+//	
+//			farmerRepositoryCustom.updateFieldsByMobileNumber(farmeruser.getUsrmobileno(),farmeruser);
+//			System.out.println("Used data Updated");
+//			msg="User Data Saved";
+//			return msg;
+//		}
+//		catch(Exception ex) {
+//			ex.printStackTrace();
+//			msg="Expception While saving data";
+//	        return msg;
+//	
+//		}
+//	}
 	@CrossOrigin(origins = "*")
 	@PostMapping(path="/sendEmailOTP")
 	public String SendEmailOTP(@RequestBody AuthUser authUser) {
@@ -113,8 +113,8 @@ public class FarmerController {
 				String data=this.authenticatelogin.AuthenciateUser(authUser);
 				System.out.println(data);
 				msg="Success";
-				String data1=this.authenticatelogin.CheckUserExsist(authUser);
-				System.out.println(data);
+//				String data1=this.authenticatelogin.CheckUserExsist(authUser);
+//				System.out.println(data);
 			}
 		}
 		return msg;

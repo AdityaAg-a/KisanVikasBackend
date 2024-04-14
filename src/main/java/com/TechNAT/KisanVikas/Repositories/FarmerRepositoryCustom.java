@@ -18,20 +18,20 @@ public class FarmerRepositoryCustom {
         this.mongoTemplate = mongoTemplate;
     }
 
-	public String updateFieldsByMobileNumber(String mobileNumber, FarmerUser farmeruser) {
-        Query query = new Query(Criteria.where("usrmobileno").is(mobileNumber));
-        Update update = new Update()
-            .set("usrname", farmeruser.getUsrname())
-            .set("usrage", farmeruser.getUsrage())
-        	.set("usrlocation", farmeruser.getUsrlocation())
-        	.set("usrcropid", farmeruser.getUsrcropid())
-        	.set("usrsoilType", farmeruser.getUsrcropid());
-
-        UpdateResult result=mongoTemplate.updateFirst(query, update, FarmerUser.class);
-        if (result.getModifiedCount() == 0) {
-            // Handle case where no document was updated (perhaps no matching document found)
-            System.out.println("No document found for update.");
-        }
-        return "Successfully Updated";
-    }
+//	public String updateFieldsByMobileNumber(String mobileNumber, FarmerUser farmeruser) {
+//        Query query = new Query(Criteria.where("usrmobileno").is(mobileNumber));
+//        Update update = new Update()
+//            .set("usrname", farmeruser.getUsrname())
+//            .set("usrage", farmeruser.getUsrage())
+//        	.set("usrlocation", farmeruser.getUsrlocation())
+//        	.set("usrcropid", farmeruser.getUsrcropid())
+//        	.set("usrsoilType", farmeruser.getUsrcropid());
+//
+//        UpdateResult result=mongoTemplate.updateFirst(query, update, FarmerUser.class);
+//        if (result.getModifiedCount() == 0) {
+//            // Handle case where no document was updated (perhaps no matching document found)
+//            System.out.println("No document found for update.");
+//        }
+//        return "Successfully Updated";
+//    }
 }

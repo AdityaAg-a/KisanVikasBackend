@@ -7,6 +7,6 @@ import com.TechNAT.KisanVikas.DAO.FarmerUser;
 
 @Repository
 public interface FarmerRepository extends MongoRepository<FarmerUser, String>{
-	public long countByusrmobileno(String mobno);
+	
 
 }

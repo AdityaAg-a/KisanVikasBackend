@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.TechNAT.KisanVikas.DAO.CropDetails;
+import com.TechNAT.KisanVikas.DAO.CropDiseases;
 import com.TechNAT.KisanVikas.DAO.SoilType;
 import com.TechNAT.KisanVikas.Repositories.CropRepository;
 import com.TechNAT.KisanVikas.Repositories.SoilTypeRepository;
@@ -45,6 +46,7 @@ public class InfoController {
 		String msg="";
 		
 		try {
+ 
 			this.croprepository.save(cropdetails);
 			System.out.println(cropdetails.toString());
 			msg="Sccessfully added New Crop";
@@ -56,5 +58,20 @@ public class InfoController {
 		return msg;
 		
 	}
+	
+	@GetMapping("GetAllDisease")
+	public String getAllDisease() {
+		String msg="";
+		try {
+			
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			msg="Excpetion Occured while getting Crop Diseases Details";
+		}
+		return msg;
+	}
+	
+	
 }
 

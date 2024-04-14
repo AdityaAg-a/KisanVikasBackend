@@ -29,19 +29,19 @@ public class AuthenticateLogin {
 		return msg;
 	}
 	
-	public String CheckUserExsist(AuthUser authUser) {
-		String msg="false";
-		try {
-			long data = this.farmerrepo.countByusrmobileno(authUser.getMobileno());
-			System.out.println(data);
-			if(data==1) {
-				msg="true";
-			}
-		}
-		catch(Exception ex) {
-			msg="SERVER SIDE ERROR";
-			ex.printStackTrace();
-		}
-		return msg;
-	}
+//	public String CheckUserExsist(AuthUser authUser) {
+//		String msg="false";
+//		try {
+//			long data = this.farmerrepo.countByusrmobileno(authUser.getMobileno());
+//			System.out.println(data);
+//			if(data==1) {
+//				msg="true";
+//			}
+//		}
+//		catch(Exception ex) {
+//			msg="SERVER SIDE ERROR";
+//			ex.printStackTrace();
+//		}
+//		return msg;
+//	}
 }

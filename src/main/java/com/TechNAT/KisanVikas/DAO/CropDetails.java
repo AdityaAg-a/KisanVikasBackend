@@ -8,8 +8,8 @@ public class CropDetails {
 	private String cropid="";
 	private String cropName;
 	private String cropType="";
-	private String DefaultColor="";
-	private String ImageUrl="";
+	private String defaultColor="";
+	private String imageUrl="";
 	private String stageofFamring="";
 	private Boolean selected=false;
 	public String getCropid() {
@@ -30,17 +30,17 @@ public class CropDetails {
 	public void setCropType(String cropType) {
 		this.cropType = cropType;
 	}
-	public String getDefaultColor() {
-		return DefaultColor;
+	public String getdefaultColor() {
+		return defaultColor;
 	}
-	public void setDefaultColor(String DefaultColor) {
-		this.DefaultColor = DefaultColor;
+	public void setdefaultColor(String defaultColor) {
+		this.defaultColor = defaultColor;
 	}
-	public String getImageUrl() {
-		return ImageUrl;
+	public String getimageUrl() {
+		return imageUrl;
 	}
-	public void setImageUrl(String ImageUrl) {
-		this.ImageUrl = ImageUrl;
+	public void setimageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	public String getStageofFamring() {
 		return stageofFamring;
@@ -57,7 +57,7 @@ public class CropDetails {
 	@Override
 	public String toString() {
 		return "{\"cropid\":\"" + cropid + "\", cropName\":\"" + cropName + "\", cropType\":\"" + cropType
-				+ "\", DefaultColor\":\"" + DefaultColor + "\", ImageUrl\":\"" + ImageUrl + "\", stageofFamring\":\""
+				+ "\", defaultColor\":\"" + defaultColor + "\", imageUrl\":\"" + imageUrl + "\", stageofFamring\":\""
 				+ stageofFamring + "\", selected\":\"" + selected + "}";
 	}
 	
