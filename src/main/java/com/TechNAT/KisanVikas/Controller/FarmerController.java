@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +19,9 @@ import com.TechNAT.KisanVikas.DAO.FarmerUser;
 import com.TechNAT.KisanVikas.Repositories.FarmerRepository;
 import com.TechNAT.KisanVikas.Repositories.FarmerRepositoryCustom;
 import com.TechNAT.KisanVikas.Service.AuthenticateLogin;
-import com.TechNAT.KisanVikas.Service.SendEmailOTP;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 @RestController
@@ -29,8 +31,7 @@ public class FarmerController {
 	private FarmerRepository farmerRepository;
 	private final FarmerRepositoryCustom farmerRepositoryCustom;
 
-	@Autowired
-	SendEmailOTP sendemailotp;
+
 	
     public FarmerController(FarmerRepository farmerRepository, FarmerRepositoryCustom farmerRepositoryCustom) {
         this.farmerRepository = farmerRepository;
@@ -80,26 +81,26 @@ public class FarmerController {
 //	
 //		}
 //	}
-	@CrossOrigin(origins = "*")
-	@PostMapping(path="/sendEmailOTP")
-	public String SendEmailOTP(@RequestBody AuthUser authUser) {
-		String msg="";
-		String mobileno=authUser.getMobileno();
-		if(mobileno.length()==10 && !mobileno.startsWith("0")) {
-			String data=this.sendemailotp.sendOTPemail(mobileno);
-			if(data.equalsIgnoreCase("Success")) {
-				msg="OTP Sent Successfully";
-			}
-			else {
-				msg="OTP Cannot be Sent";
-			}
-		}
-		else {
-			msg="Enter Correct Mobile Number";
-		}
-		return msg;
-	}
-	
+//	@CrossOrigin(origins = "*")
+//	@PostMapping(path="/sendEmailOTP")
+//	public String SendEmailOTP(@RequestBody AuthUser authUser) {
+//		String msg="";
+//		String mobileno=authUser.getMobileno();
+//		if(mobileno.length()==10 && !mobileno.startsWith("0")) {
+//			String data=this.sendemailotp.sendOTPemail(mobileno);
+//			if(data.equalsIgnoreCase("Success")) {
+//				msg="OTP Sent Successfully";
+//			}
+//			else {
+//				msg="OTP Cannot be Sent";
+//			}
+//		}
+//		else {
+//			msg="Enter Correct Mobile Number";
+//		}
+//		return msg;
+//	}
+//	
 	@Autowired 
 	private AuthenticateLogin authenticatelogin;
 	
@@ -126,5 +127,76 @@ public class FarmerController {
 		Optional<FarmerUser> ls=this.farmerRepository.findById(uid);
 		System.out.println(ls);
 		return ls.toString();
+	}
+	
+	@PostMapping(path="/addNewUser")
+	public String AddNewUser(@RequestBody FarmerUser farmerUser) {
+		String msg="";
+		
+		String userIdLogging=farmerUser.getLoginDetails().getUserid();
+		try {
+            long userExist = farmerRepository.countByLoginDetails_Userid(userIdLogging);
+            if(userExist == 0) {
+				farmerRepository.save(farmerUser);
+				msg="User Added Sucessfully";
+            }
+            else {
+            	msg="User Alreay Exist";
+            }
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		return msg;
+	}
+	
+	@PostMapping(path="/userStatus")
+	public ResponseEntity<String> checkUserExist(@RequestBody String userid) throws JSONException {
+		JSONObject jsonObj = new JSONObject();
+		try {
+			long userExist= farmerRepository.countByLoginDetails_Userid(userid);
+			boolean exists = userExist > 0;
+			jsonObj.put("status", "Success");
+			JSONObject dataJson = new JSONObject();
+	         dataJson.put("userExist", exists);
+	         jsonObj.put("data", dataJson);
+			
+	         return ResponseEntity.ok(jsonObj.toString());
+
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			jsonObj.put("status", "Failed");
+            return ResponseEntity.ok(jsonObj.toString());
+		}
+	}
+	
+	@PostMapping(path="/getUserData")
+	public ResponseEntity<String> GetUserData(@RequestBody String userid) throws JSONException {
+		JSONObject jsonObj = new JSONObject();
+		try {
+			long userExist= farmerRepository.countByLoginDetails_Userid(userid);
+			boolean exists = userExist > 0;
+			if(exists) {
+				jsonObj.put("status", "Success");
+				FarmerUser userdetails=farmerRepository.findByLoginDetails_Userid(userid);
+				JSONObject dataJson = new JSONObject(userdetails);
+				System.out.println(dataJson);
+				jsonObj.put("data", dataJson);
+				
+			}
+			else {
+				jsonObj.put("status", "Success");
+				jsonObj.put("data", "User Does Not Exist");
+			}
+			
+	         return ResponseEntity.ok(jsonObj.toString());
+
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			jsonObj.put("status", "Failed");
+            return ResponseEntity.ok(jsonObj.toString());
+		}
 	}
 }
