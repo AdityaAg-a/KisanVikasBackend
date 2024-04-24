@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kisanvikasapp
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: kisanvikasapp
+        tier: display
+    spec:
+      containers:
+        - image: adityaaga/kisanvikasapp
+          name: kisanvikasapp
+          #image: gcr.io/Pipelines/nginx:1.7.9
+          imagePullPolicy: Always
+          ports:
+          - name: http
+            containerPort: 8080
