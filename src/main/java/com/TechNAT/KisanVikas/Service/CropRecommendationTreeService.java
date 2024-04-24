@@ -19,7 +19,7 @@ public class CropRecommendationTreeService {
 	public String PreditCropSuggesteed(CropRecommendation crp) {
 		ObjectInputStream oos;
 		try {
-			oos = new ObjectInputStream(new FileInputStream("src/main/resources/models/decisionTree-minNumObj=2-Boosted=false-C=0.25-file=Crop_recommendation.model"));
+			oos = new ObjectInputStream(new FileInputStream("src/main/resources/static/files/aimodel/decisionTree-minNumObj=2-Boosted=false-C=0.25-file=Crop_recommendation.model"));
 			Classifier cls = (Classifier)oos.readObject();
 			System.out.println("fetched file");
 //			Instances dataa ;
