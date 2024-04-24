@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.Reader;
 
+import org.springframework.stereotype.Service;
+
 import com.TechNAT.KisanVikas.DAO.CropRecommendation;
 
 import weka.classifiers.Classifier;
@@ -11,6 +13,7 @@ import weka.core.DenseInstance;
 import weka.core.Instance;
 import weka.core.Instances;
 
+@Service
 public class CropRecommendationTreeService {
 	
 	public String PreditCropSuggesteed(CropRecommendation crp) {
