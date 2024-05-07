@@ -199,4 +199,17 @@ public class FarmerController {
             return ResponseEntity.ok(jsonObj.toString());
 		}
 	}
+	
+	@PostMapping(path="/UpdateUser")
+	public ResponseEntity<String> UpdateUserData(@RequestBody FarmerUser farmeruser) throws JSONException{
+		try {
+			if(!farmeruser.getLoginDetails().getUserid().isEmpty()) {
+				
+			}
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
 }
