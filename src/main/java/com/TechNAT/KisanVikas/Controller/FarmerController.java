@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -204,8 +205,22 @@ public class FarmerController {
 	public ResponseEntity<String> UpdateUserData(@RequestBody FarmerUser farmeruser) throws JSONException{
 		try {
 			if(!farmeruser.getLoginDetails().getUserid().isEmpty()) {
-				
+                FarmerUser existingUser = farmerRepository.findByLoginDetails_Userid(farmeruser.getUserDetails().getUserContactNumber());
+                if (existingUser != null) {
+                    existingUser.getUserDetails().setUserName(farmeruser.getUserDetails().getUserName());
+                    existingUser.getUserDetails().setUserAddress(farmeruser.getUserDetails().getUserAddress());
+
+                    // Save the updated user
+                    farmerRepository.save(existingUser);
+
+                    return ResponseEntity.ok("User updated successfully.");
+                } else {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User with mobile number " + farmeruser.getUserDetails().getUserContactNumber() + " not found.");
+                }
 			}
+			else {
+                return ResponseEntity.badRequest().body("User ID and mobile number are required fields.");
+            }
 		}
 		catch(Exception ex) {
 			ex.printStackTrace();
