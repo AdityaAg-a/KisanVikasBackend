@@ -15,7 +15,7 @@ import com.TechNAT.KisanVikas.Service.FarmerService;
 
 @RestController
 @RequestMapping("/userdelete")
-@CrossOrigin(origins = "https://adityaag-a.github.io/EaseTechBridge.github.io/")
+@CrossOrigin(origins = "https://adityaag-a.github.io/")
 public class DeleteUser {
 	
 	@Autowired
